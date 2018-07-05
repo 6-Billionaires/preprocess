@@ -64,7 +64,7 @@ class EX_Preprocess():
     def preprocess(self,path_src,int_sec):
         self.file_name = path_src.split("\\")[-1]
         self.code = self.file_name.split('_')[-2]
-        self.date = self.file_name.split('_')[1]
+        self.date = self.file_name.split('_')[-4]
 
         print(str(self.file_name) + " / Pre-processing......")
 
@@ -174,9 +174,9 @@ class EX_Preprocess():
         df[df.columns[4]] = df[df.columns[4]] / yestday_price
         df[df.columns[6:]] = df[df.columns[6:]] / yestday_price
 
-        df[df.columns[1]] = (df[df.columns[1]] / market_shares).applymap(np.log)
-        df[df.columns[3]] = (df[df.columns[3]] / market_shares).applymap(np.log)
-        df[df.columns[5]] = (df[df.columns[5]] / market_shares).applymap(np.log)
+        df[df.columns[1]] = (df[df.columns[1]] / market_shares).apply(np.log)
+        df[df.columns[3]] = (df[df.columns[3]] / market_shares).apply(np.log)
+        df[df.columns[5]] = (df[df.columns[5]] / market_shares).apply(np.log)
 
 
         return df
