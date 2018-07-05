@@ -68,7 +68,8 @@ class EX_Preprocess():
 
         print(str(self.file_name) + " / Pre-processing......")
 
-        df_executed = pd.read_csv(path_src, encoding='cp949', names=self.col1)
+        #df_executed = pd.read_csv(path_src, encoding='cp949', names=self.col1)
+        df_executed = pd.read_csv(path_src, encoding='utf-8', names=self.col1)
         df_executed.iloc[:, 2] = list(map(tf.timestamp2time, df_executed.iloc[:, 2]))
 
         total_data = {}
@@ -162,6 +163,7 @@ class EX_Preprocess():
         df_price.index = list(map(lambda x:x[1:], df_price.index))
 
         df_shareratio = pd.read_csv('data/stock_shareratio_20180627_csv.csv', index_col=0, thousands=",", encoding='cp949')
+
         df_shareratio.index = list(map(lambda x:x[1:], df_shareratio.index))
 
         mt_col = df_price.columns.get_loc(self.date)

@@ -38,7 +38,8 @@ class OB_Preprocess():
         self.code = self.file_name.split('_')[-2]
         self.date = self.file_name.split('_')[-4]
 
-        df_orderbook = pd.read_csv(path_src, encoding='cp949', names=self.col)
+        #df_orderbook = pd.read_csv(path_src, encoding='cp949', names=self.col)
+        df_orderbook = pd.read_csv(path_src, encoding='utf-8', names=self.col)
         df_orderbook.iloc[:, 2] = list(map(tf.timestamp2time, df_orderbook.iloc[:, 2]))
         df_orderbook = df_orderbook[df_orderbook.loc[:, "Dongsi"] == 1]
 
